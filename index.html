@@ -1,36 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Space Battle OOP</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="bodyContainer">
-        <div class="mainCharacterView left" >
-            <div class="nameBox">USS Sarah</div>
-            <div class="playerImage"></div>
-            <div class="playerStats">
-                Hull : 20 <br>
-                FirePower : 5 <br>
-                Accuracy : .7 <br>
-            </div>
-        </div>
-        <div class="mainCharacterView right">
-            <div class="nameBox">Enemy</div>
-            <div class="enemyImage"></div>
-                <div class="enemyStats">
-                    Hull : 6 <br>
-                    FirePower : 3 <br>
-                    Accuracy : .6 <br>
-                </div>
-        </div>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Space Battle</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <div class="content">
+    <div class="header">
+      <h1>Space Battle</h1>
+      <h3>Destory all Alien ships! Earth is counting on you!</h3>
     </div>
-</body>
-<script src="app.js"></script>
+    <div class="interface">
+        <img src="images/ussSarah.gif" alt="USS Sarah"></img>
+        <div>
+          <h3>USS Sarah</h3>
+          <p>
+            The USS Sarah, an embodiment of relentless power and unwavering determination, 
+            surges through the cosmos like a blazing coment. 
+            This legendary battleship is Earth's last line of defence against the alien onslaught. 
+            Guided by the fearless hands of its intrepid captain, 
+            the USS Sarah emerges as a beacon of hope in the darkest reaches of space.
+          </p>
+        </div>
+        <button href="#" onclick="startGame('USS Sarah')"> Click here to play</button>
+    </div>
+   <button class="btn-retreat hidden">Retreat</button>
+    <div class="actions"></div>
+    <div class="arena"></div>
+    <div class="alien"></div>
+    </div>
+  </body>
+  <script src="js/main.js"></script>
 </html>
