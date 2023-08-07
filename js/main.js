@@ -48,17 +48,19 @@ let GameManager = {
   const getActions = document.querySelector(".actions");
   const getArena = document.querySelector(".arena");
   getHeader.innerHTML = '<p>Task: Defeat the Alien ships or retreat!</p>';
+  getHeader.innerHTML = '<p>Check the console for a fight report</p>';
   getActions.innerHTML = `
     <a href="#" class="btn-prefight" onclick="GameManager.setFight()">Search for an Alien ship!</a>`;
+
   getArena.style.visibility = "visible";
   this.currentAlienIndex = 0;
 
 // Creating the retreat button
   const retreatButton = document.querySelector(".btn-retreat");
   retreatButton.classList.remove("hidden");
-
   retreatButton.addEventListener("click", () => {
     this.showDefeat();
+    console.log("You've retreated to fight another day!")
   });
 },
 
@@ -69,6 +71,7 @@ let GameManager = {
       this.showWinner();
       return;
     }
+
 // Setting up the Alien ships
     const getHeader = document.querySelector(".header");
     const getActions = document.querySelector(".actions");
@@ -77,8 +80,7 @@ let GameManager = {
     const theAlien = alienTypes[this.currentAlienIndex];
 
 // Setting up the logic for random Alien Stats
-// Define randomStat function outside of setFight
-  
+// Define randomStat function outside of setFight 
   function randomAlienStat(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }   
@@ -86,6 +88,7 @@ let GameManager = {
     this.currentAlienIndex++;
     getHeader.innerHTML = '<p>Task: Attack or Retreat to fight another day.</p>';
     getActions.innerHTML = `<a href="#" class="btn-prefight" onclick="PlayerFunction.calcAttack(player, alien)">Attack!</a>`;
+    console.log("An Alien has been found!")
     getAlien.innerHTML = `
       <img src="images/aliens/${theAlien.replace(/\s+/g, '_')}.gif" class="alien-img">
       <div>
@@ -98,12 +101,12 @@ let GameManager = {
 
 // Once all 6 aliens are defeated, you get a winner image
   showWinner: function() {
-    console.log("showWinner function called");
-    const getArena = document.querySelector(".arena");
-    getArena.innerHTML =
+    console.log("You've won every battle against the Aliens!");
+    const getAlien = document.querySelector(".alien");
+    getAlien.innerHTML =
       `<img src="images/youwin/youWin.gif">
       <p>You've saved the world! Would you like to </p>`
-      activatePlayAgainButton(getArena);
+      activatePlayAgainButton(getAlien);
   },
 
 // If you lose to the Aliens, you get a defeat message and two images appear  
@@ -112,7 +115,7 @@ let GameManager = {
     getAlien.innerHTML = 
       `<img src="images/youlose/alienYouLose.gif">
       <img src="images/youlose/alienYouLose2.gif">
-      <p>You lose! But don't give up now!</p>`;
+      <p>You lose! But don't give up now! </p> `;
       activatePlayAgainButton(getAlien);
   }
 };
@@ -149,18 +152,18 @@ const PlayerFunction = {
     if (Math.random() < player.accuracy) {
       alien.hull -= playerAttack;
       alert(`You hit the Alien ship for ${playerAttack} damage.`);
-
+      console.log("You've damaged the Alien for " + playerAttack)
       if (alien.hull <= 0) {
         alert("Congratulations! You destroyed the Alien ship!");
+         console.log("You've destroyed the Alien ship!");
         GameManager.setFight();
-        console.log("Player wins!");
       } else {
         // Update alien's hull points directly in the DOM after player's attack
         document.querySelector(".hull-alien").textContent = `Hull: ${alien.hull}`;
 
         player.hull -= alienAttack;
         alert(alienHit);
-
+        console.log("The Alien has done " + alienAttack + " damage to you.")
         if (player.hull <= 0) {
           alert(playerDestroyed);
           GameManager.showDefeat();
@@ -171,14 +174,15 @@ const PlayerFunction = {
       }
     } else {
       alert(playerMissed);
-
+      console.log("You missed!")
       // Handle the alien's attack after player missed
       if (Math.random() < alien.accuracy) {
         player.hull -= alienAttack;
         alert(alienHit);
-
+        console.log(alienHit)
         if (player.hull <= 0) {
           alert(playerDestroyed);
+          console.log("The Aliens have destroyed you! Game Over")
           GameManager.showDefeat();
         } else {
           // Update player's hull points directly in the DOM after the alien's attack
@@ -186,6 +190,7 @@ const PlayerFunction = {
         }
       } else {
         alert(alienMissed);
+        console.log("The Alien missed!")
       }
     }
   },
