@@ -193,5 +193,5 @@ const PlayerFunction = {
         console.log("The Alien missed!")
       }
     }
-  },
+  }
 };
