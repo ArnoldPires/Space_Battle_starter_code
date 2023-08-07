@@ -90,7 +90,7 @@ let GameManager = {
     getActions.innerHTML = `<a href="#" class="btn-prefight" onclick="PlayerFunction.calcAttack(player, alien)">Attack!</a>`;
     console.log("An Alien has been found!")
     getAlien.innerHTML = `
-      <img src="./images/aliens/${theAlien.replace(/\s+/g, '_')}.gif" class="alien-img">
+      <img src="./images/aliens/${theAlien.replace(/\s+/g, '_').toLowerCase()}.gif" class="alien-img">
       <div>
         <h3>${theAlien}</h3>
         <p class="hull-alien">Hull: ${alien.hull}</p>
